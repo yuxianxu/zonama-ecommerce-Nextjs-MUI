@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const connection = {};
 
@@ -11,16 +11,13 @@ async function connect() {
   if (mongoose.connections.length > 0) {
     connection.isConnected = mongoose.connections[0].readyState;
     if (connection.isConnected === 1) {
-      console.log('use previouse connection');
+      console.log('use previous connection');
       return;
     }
     await mongoose.disconnect();
   }
   try {
-    const db = await mongoose.connect(process.env.MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    const db = await mongoose.connect(process.env.MONGODB_URI);
     console.log('new connection');
     connection.isConnected = db.connections[0].readyState;
   } catch (error) {
