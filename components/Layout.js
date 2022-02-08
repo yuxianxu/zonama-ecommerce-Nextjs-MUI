@@ -85,8 +85,7 @@ export default function Layout({ title, description, children }) {
                     </Badge>
                   ) : (
                     'Cart'
-                  )}
-                  Cart
+                  )}                  
                 </Link>
               </NextLink>
               <NextLink href="/login" passHref>
