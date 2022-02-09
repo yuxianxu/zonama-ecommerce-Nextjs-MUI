@@ -32,9 +32,6 @@ export default function Layout({ title, description, children }) {
         fontWeight: 400,
         margin: '1rem 0',
       },
-      body1: {
-        fontWeight: 'normal',
-      },
     },
     palette: {
       mode: darkMode ? 'dark' : 'light',
