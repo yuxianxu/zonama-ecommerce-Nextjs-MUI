@@ -46,7 +46,7 @@ export default function Login() {
         password,
       });
       dispatch({ type: 'USER_LOGIN', payload: data });
-      Cookies.set('userInfo', data);
+      Cookies.set('userInfo', JSON.stringify(data), '30d');
       router.push(redirect || '/');
     } catch (err) {
       enqueueSnackbar(
