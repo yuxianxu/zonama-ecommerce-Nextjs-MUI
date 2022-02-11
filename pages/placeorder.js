@@ -38,7 +38,9 @@ function Placeorder() {
   } = state;
 
   const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100;
-  const itemsPrice = cartItems.reduce((a, c) => a + c.price * c.quantity, 0);
+  const itemsPrice = round2(
+    cartItems.reduce((a, c) => a + c.price * c.quantity, 0)
+  );
   const shippingPrice = itemsPrice > 200 ? 0 : 15;
   const taxPrice = round2(itemsPrice * 0.15);
   const totalPrice = round2(itemsPrice + taxPrice + shippingPrice);
@@ -82,16 +84,18 @@ function Placeorder() {
       setLoading(false);
       router.push(`/order/${data._id}`);
     } catch (err) {
+      setLoading(false);
       enqueueSnackbar(getError(err), { variant: 'error' });
     }
   };
 
   return (
-    <Layout title="Shopping Cart">
+    <Layout title="Place Order">
       <CheckoutWizard activeStep={3}></CheckoutWizard>
       <Typography component="h1" variant="h1">
         Place Order
       </Typography>
+
       <Grid container spacing={1}>
         <Grid item md={9} xs={12}>
           <Card className={classes.section}>
@@ -151,6 +155,7 @@ function Placeorder() {
                               </Link>
                             </NextLink>
                           </TableCell>
+                          
                           <TableCell>
                             <NextLink href={`/product/${item.slug}`} passHref>
                               <Link>
