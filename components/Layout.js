@@ -85,7 +85,7 @@ export default function Layout({ title, description, children }) {
         <AppBar position="static" className={classes.navbar}>
           <Toolbar>
             <NextLink href="/" passHref>
-              <Link>
+              <Link style={{ textDecoration: 'none' }}>
                 <Typography className={classes.brand}>zonama</Typography>
               </Link>
             </NextLink>
@@ -96,7 +96,7 @@ export default function Layout({ title, description, children }) {
                 onChange={darkModeChangeHandler}
               ></Switch>
               <NextLink href="/cart" passHref>
-                <Link>
+                <Link style={{ textDecoration: 'none' }}>
                   {cart.cartItems.length > 0 ? (
                     <Badge
                       color="secondary"

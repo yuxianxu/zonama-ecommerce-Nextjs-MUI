@@ -1,6 +1,7 @@
 import { makeStyles } from '@mui/styles';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
+  
   navbar: {
     backgroundColor: '#203040',
     '& a': {
@@ -11,6 +12,7 @@ const useStyles = makeStyles({
   brand: {
     fontWeight: 'bold',
     fontSize: '1.5rem',
+    textDecoration:'none',
   },
   grow: {
     flexGrow: 1,
@@ -19,6 +21,10 @@ const useStyles = makeStyles({
     minHeight: '80vh',
   },
   footer: {
+    textAlign: 'center',
+    marginTop: 20,
+  },
+  nav: {
     textAlign: 'center',
     marginTop: 10,
   },
@@ -45,6 +51,7 @@ const useStyles = makeStyles({
   fullWidth: {
     width: '100%'
   },
-});
+
+}));
 
 export default useStyles;

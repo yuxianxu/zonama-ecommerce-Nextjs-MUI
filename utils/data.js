@@ -17,7 +17,7 @@ const data = {
   ],
   products: [
     {
-      name: 'Free Shirt',
+      name: 'Happy Shirt',
       slug: 'free-shirt',
       category: 'Shirts',
       image: '/images/shirt1.jpg',
@@ -82,6 +82,18 @@ const data = {
     },
     {
       name: 'Classic Pants',
+      slug: 'classic-pants',
+      category: 'Pants',
+      image: '/images/pants3.jpg',
+      price: 75,
+      brand: 'Casely',
+      rating: 4.5,
+      numReviews: 10,
+      countInStock: 20,
+      description: 'A popular pants',
+    },
+    {
+      name: 'Fancy Pants',
       slug: 'classic-pants',
       category: 'Pants',
       image: '/images/pants3.jpg',
