@@ -22,7 +22,8 @@ const useStyles = makeStyles((theme) => ({
   },
   footer: {
     textAlign: 'center',
-    marginTop: 20,
+    marginTop: 75,
+    marginBottom: 30,
   },
   nav: {
     textAlign: 'center',

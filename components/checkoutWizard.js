@@ -1,4 +1,3 @@
-import { ClassNames } from '@emotion/react';
 import { Step, StepLabel, Stepper } from '@mui/material';
 import React from 'react';
 import useStyles from '../utils/styles';

@@ -150,6 +150,7 @@ export default function Layout({ title, description, children }) {
           </Toolbar>
         </AppBar>
         <Container className={classes.main}>{children}</Container>
+        
         <footer className={classes.footer}>
           <Typography>
             All rights reserved. Yuxian Xu ecommerce shopping store.
