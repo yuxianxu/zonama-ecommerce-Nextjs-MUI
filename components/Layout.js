@@ -138,6 +138,15 @@ export default function Layout({ title, description, children }) {
                     >
                       Order History
                     </MenuItem>
+                    {userInfo.isAdmin && (
+                      <MenuItem
+                        onClick={(e) =>
+                          loginMenuCloseHandler(e, '/admin/dashboard')
+                        }
+                      >
+                        Admin Dashboard
+                      </MenuItem>
+                    )}
                     <MenuItem onClick={logoutClickHandler}>Logout</MenuItem>
                   </Menu>
                 </>
@@ -150,7 +159,7 @@ export default function Layout({ title, description, children }) {
           </Toolbar>
         </AppBar>
         <Container className={classes.main}>{children}</Container>
-        
+
         <footer className={classes.footer}>
           <Typography>
             All rights reserved. Yuxian Xu ecommerce shopping store.
