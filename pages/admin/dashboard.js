@@ -90,6 +90,11 @@ function AdminDashboard() {
                   <ListItemText primary="Orders"></ListItemText>
                 </ListItem>
               </NextLink>
+              <NextLink href="/admin/products" passHref>
+                <ListItem  button components="a">
+                  <ListItemText primary="Products"></ListItemText>
+                </ListItem>
+              </NextLink>
             </List>
           </Card>
         </Grid>
@@ -107,12 +112,12 @@ function AdminDashboard() {
                       <Card raised>
                         <CardContent>
                           <Typography variant="h1">
-                            $ {summary.ordersPrice}
+                          {'$'}{summary.ordersPrice}
                           </Typography>
                           <Typography>Sales</Typography>
                         </CardContent>
                         <CardActions>
-                          <NextLink href="/admin/sales" passHref>
+                          <NextLink href="/admin/orders" passHref>
                             <Button size="small" color="primary">
                               View sales
                             </Button>
