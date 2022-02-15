@@ -158,6 +158,7 @@ export default function Layout({ title, description, children }) {
             </div>
           </Toolbar>
         </AppBar>
+        <Toolbar />
         <Container className={classes.main}>{children}</Container>
 
         <footer className={classes.footer}>
