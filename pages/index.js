@@ -18,7 +18,7 @@ import db from '../utils/db';
 import { Store } from '../utils/Store';
 
 export default function Home(props) {
-  const router = useRouter();
+  // const router = useRouter();
   const { state, dispatch } = useContext(Store);
   const { products } = props;
 

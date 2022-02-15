@@ -82,7 +82,7 @@ export default function Layout({ title, description, children }) {
 
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <AppBar position="static" className={classes.navbar}>
+        <AppBar position="fixed" className={classes.navbar}>
           <Toolbar>
             <NextLink href="/" passHref>
               <Link style={{ textDecoration: 'none' }}>
