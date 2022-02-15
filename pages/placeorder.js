@@ -37,6 +37,7 @@ function Placeorder() {
     cart: { cartItems, shippingAddress, paymentMethod },
   } = state;
 
+
   const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100;
   const itemsPrice = round2(
     cartItems.reduce((a, c) => a + c.price * c.quantity, 0)
@@ -61,6 +62,7 @@ function Placeorder() {
     closeSnackbar();
     try {
       setLoading(true);
+      console.log(`cartItem: ${cartItems}`);
       const { data } = await axios.post(
         '/api/orders',
         {
@@ -78,6 +80,8 @@ function Placeorder() {
           },
         }
       );
+
+        console.log(data);
 
       dispatch({ type: 'CART_CLEAR' });
       Cookies.remove('cartItems');

@@ -43,7 +43,6 @@ function reducer(state, action) {
       return { ...state, loadingPay: false, errorPay: action.payload };
     case 'PAY_RESET':
       return { ...state, loadingPay: false, successPay: false, errorPay: '' };
-
     case 'DELIVER_REQUEST':
       return { ...state, loadingDeliver: true };
     case 'DELIVER_SUCCESS':
@@ -78,7 +77,6 @@ function Order({ params }) {
     order: {},
     error: '',
   });
-
   const {
     shippingAddress,
     paymentMethod,
@@ -97,7 +95,6 @@ function Order({ params }) {
     if (!userInfo) {
       return router.push('/login');
     }
-
     const fetchOrder = async () => {
       try {
         dispatch({ type: 'FETCH_REQUEST' });
@@ -109,7 +106,6 @@ function Order({ params }) {
         dispatch({ type: 'FETCH_FAIL', payload: getError(err) });
       }
     };
-
     if (
       !order._id ||
       successPay ||
@@ -117,7 +113,6 @@ function Order({ params }) {
       (order._id && order._id !== orderId)
     ) {
       fetchOrder();
-
       if (successPay) {
         dispatch({ type: 'PAY_RESET' });
       }
@@ -129,7 +124,6 @@ function Order({ params }) {
         const { data: clientId } = await axios.get('/api/keys/paypal', {
           headers: { authorization: `Bearer ${userInfo.token}` },
         });
-
         paypalDispatch({
           type: 'resetOptions',
           value: {
@@ -137,15 +131,12 @@ function Order({ params }) {
             currency: 'USD',
           },
         });
-
         paypalDispatch({ type: 'setLoadingStatus', value: 'pending' });
       };
-
       loadPaypalScript();
     }
-  }, [order, orderId, successPay, successDeliver]);
-
-  const { enqueueSnackbar } = useSnackbar();
+  }, [order, successPay, successDeliver]);
+  const { closeSnackbar, enqueueSnackbar } = useSnackbar();
 
   function createOrder(data, actions) {
     return actions.order
@@ -160,7 +151,6 @@ function Order({ params }) {
         return orderID;
       });
   }
-
   function onApprove(data, actions) {
     return actions.order.capture().then(async function (details) {
       try {
@@ -181,6 +171,10 @@ function Order({ params }) {
     });
   }
 
+  function onError(err) {
+    enqueueSnackbar(getError(err), { variant: 'error' });
+  }
+
   async function deliverOrderHandler() {
     try {
       dispatch({ type: 'DELIVER_REQUEST' });
@@ -197,10 +191,6 @@ function Order({ params }) {
       dispatch({ type: 'DELIVER_FAIL', payload: getError(err) });
       enqueueSnackbar(getError(err), { variant: 'error' });
     }
-  }
-
-  function onError(err) {
-    enqueueSnackbar(getError(err), { variant: 'error' });
   }
 
   return (
@@ -281,6 +271,7 @@ function Order({ params }) {
                                 </Link>
                               </NextLink>
                             </TableCell>
+
                             <TableCell>
                               <NextLink href={`/product/${item.slug}`} passHref>
                                 <Link>
@@ -314,9 +305,9 @@ function Order({ params }) {
                     <Grid item xs={6}>
                       <Typography>Items:</Typography>
                     </Grid>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography align="right">{'$'}{itemsPrice}</Typography>
+                    <Grid item xs={6}>
+                      <Typography align="right">{'$'}{itemsPrice}</Typography>
+                    </Grid>
                   </Grid>
                 </ListItem>
                 <ListItem>
@@ -324,9 +315,9 @@ function Order({ params }) {
                     <Grid item xs={6}>
                       <Typography>Tax:</Typography>
                     </Grid>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography align="right">{'$'}{taxPrice}</Typography>
+                    <Grid item xs={6}>
+                      <Typography align="right">{'$'}{taxPrice}</Typography>
+                    </Grid>
                   </Grid>
                 </ListItem>
                 <ListItem>
@@ -334,9 +325,9 @@ function Order({ params }) {
                     <Grid item xs={6}>
                       <Typography>Shipping:</Typography>
                     </Grid>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography align="right">{'$'}{shippingPrice}</Typography>
+                    <Grid item xs={6}>
+                      <Typography align="right">{'$'}{shippingPrice}</Typography>
+                    </Grid>
                   </Grid>
                 </ListItem>
                 <ListItem>
