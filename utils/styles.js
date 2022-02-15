@@ -7,6 +7,7 @@ const useStyles = makeStyles((theme) => ({
     '& a': {
       color: '#ffffff',
       marginLeft: 10,
+      marginBottom: 20,
     },
   },
   brand: {
