@@ -1,4 +1,36 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a ecommerce project, created by [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+## Technologies
+- Next.js
+- Material UI
+- MongoDB
+- PayPal payment
+- JWT Auth
+- cloudinary
+
+## Feature
+### Products
+- list page
+- edit page
+- create page
+- image uploaded
+
+### Users
+- admin setting page
+- profile page
+- edit page
+
+### Orders
+- list page
+- summary
+- payment status
+- delivery status
+
+### Payment
+- payment method
+- payment redirect page
+
+For the source of this project, pls check Basir's channel on Udemy or YouTube.
 
 ## Getting Started
 
