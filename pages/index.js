@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 import axios from 'axios';
 import NextLink from 'next/link';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import { useContext } from 'react';
 import Layout from '../components/Layout';
 import Product from '../models/Product';
