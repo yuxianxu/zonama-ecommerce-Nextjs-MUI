@@ -1,7 +1,6 @@
 import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles((theme) => ({
-  
   navbar: {
     backgroundColor: '#203040',
     '& a': {
@@ -12,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
   brand: {
     fontWeight: 'bold',
     fontSize: '1.5rem',
-    textDecoration:'none',
+    textDecoration: 'none',
   },
   grow: {
     flexGrow: 1,
@@ -47,12 +46,20 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 15,
   },
   error: {
-    color: '#f04040'
+    color: '#f04040',
   },
   fullWidth: {
-    width: '100%'
+    width: '100%',
   },
-
+  reviewForm: {
+    maxWidth: 800,
+    width: '100%',
+  },
+  reviewItem: {
+    marginRight: '1rem',
+    borderRight: '1px #808080 solid',
+    paddingRight: '1rem',
+  },
 }));
 
 export default useStyles;
