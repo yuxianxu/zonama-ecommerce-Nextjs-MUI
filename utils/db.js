@@ -13,7 +13,7 @@ async function connect() {
       console.log('use previous connection');
       return;
     }
-    await mongoose.disconnect();
+    // await mongoose.disconnect();
   }
   const db = await mongoose.connect(process.env.MONGODB_URI);
   console.log('new connection');
