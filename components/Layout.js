@@ -101,7 +101,7 @@ export default function Layout({ title, description, children }) {
   };
   const loginMenuCloseHandler = (e, redirect) => {
     setAnchorEl(null);
-    if (redirect) {
+    if (redirect !== 'backdropClick') {
       router.push(redirect);
     }
   };
@@ -185,7 +185,7 @@ export default function Layout({ title, description, children }) {
                 onChange={darkModeChangeHandler}
               ></Switch>
               <NextLink href="/cart" passHref>
-                <Link>
+                <Link style={{ textDecoration: 'none' }}>
                   <Typography component="span">
                     {cart.cartItems.length > 0 ? (
                       <Badge
@@ -201,52 +201,50 @@ export default function Layout({ title, description, children }) {
                 </Link>
               </NextLink>
               {userInfo ? (
-                <NextLink href="/cart" passHref>
-                  <Link>
-                    <Button
-                      aria-controls="simple-menu"
-                      aria-haspopup="true"
-                      onClick={loginClickHandler}
-                      className={classes.navbarButton}
+                <>
+                  <Button
+                    aria-controls="simple-menu"
+                    aria-haspopup="true"
+                    onClick={loginClickHandler}
+                    className={classes.navbarButton}
+                  >
+                    {userInfo.name}
+                  </Button>
+                  <Menu
+                    id="simple-menu"
+                    anchorEl={anchorEl}
+                    keepMounted
+                    open={Boolean(anchorEl)}
+                    onClose={loginMenuCloseHandler}
+                  >
+                    <MenuItem
+                      onClick={(e) => loginMenuCloseHandler(e, '/profile')}
                     >
-                      {userInfo.name}
-                    </Button>
-                    <Menu
-                      id="simple-menu"
-                      anchorEl={anchorEl}
-                      keepMounted
-                      open={Boolean(anchorEl)}
-                      onClose={loginMenuCloseHandler}
+                      Profile
+                    </MenuItem>
+                    <MenuItem
+                      onClick={(e) =>
+                        loginMenuCloseHandler(e, '/order-history')
+                      }
                     >
-                      <MenuItem
-                        onClick={(e) => loginMenuCloseHandler(e, '/profile')}
-                      >
-                        Profile
-                      </MenuItem>
+                      Order History
+                    </MenuItem>
+                    {userInfo.isAdmin && (
                       <MenuItem
                         onClick={(e) =>
-                          loginMenuCloseHandler(e, '/order-history')
+                          loginMenuCloseHandler(e, '/admin/dashboard')
                         }
                       >
-                        Order History
+                        Admin Dashboard
                       </MenuItem>
-                      {userInfo.isAdmin && (
-                        <MenuItem
-                          onClick={(e) =>
-                            loginMenuCloseHandler(e, '/admin/dashboard')
-                          }
-                        >
-                          Admin Dashboard
-                        </MenuItem>
-                      )}
-                      <MenuItem onClick={logoutClickHandler}>Logout</MenuItem>
-                    </Menu>
-                  </Link>
-                </NextLink>
+                    )}
+                    <MenuItem onClick={logoutClickHandler}>Logout</MenuItem>
+                  </Menu>
+                </>
               ) : (
                 <NextLink href="/login" passHref>
                   <Link>
-                    <Typography component="span">Login</Typography>
+                    <Typography component='span'>Login</Typography>
                   </Link>
                 </NextLink>
               )}
