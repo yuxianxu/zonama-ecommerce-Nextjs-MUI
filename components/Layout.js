@@ -1,6 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Head from 'next/head';
 import NextLink from 'next/link';
+import CancelIcon from '@mui/icons-material/Cancel';
+import MenuIcon from '@mui/icons-material/Menu';
 import {
   AppBar,
   Container,
@@ -13,6 +15,13 @@ import {
   Button,
   MenuItem,
   Menu,
+  IconButton,
+  Drawer,
+  List,
+  ListItem,
+  Divider,
+  ListItemText,
+  Box,
 } from '@mui/material';
 import useStyles from '../utils/styles';
 import { createTheme } from '@mui/material/styles';
@@ -20,6 +29,9 @@ import { ThemeProvider } from '@mui/material/styles';
 import { Store } from '../utils/Store';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
+import { useSnackbar } from 'notistack';
+import axios from 'axios';
+import { getError } from '../utils/error';
 
 export default function Layout({ title, description, children }) {
   const router = useRouter();
@@ -49,6 +61,34 @@ export default function Layout({ title, description, children }) {
     },
   });
   const classes = useStyles();
+
+  const [sidebarVisible, setSidebarVisible] = useState(false);
+
+  const sidebarOpenHandler = () => {
+    setSidebarVisible(true);
+  };
+
+  const sidebarCloseHandler = () => {
+    setSidebarVisible(false);
+  };
+
+  const [categories, setCategories] = useState([]);
+  const { enqueueSnackbar } = useSnackbar();
+
+  const fetchCategories = async () => {
+    try {
+      const { data } = await axios.get(`/api/products/categories`);
+      console.log(data);
+      setCategories(data);
+    } catch (err) {
+      enqueueSnackbar(getError(err), { variant: 'error' });
+    }
+  };
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
   const darkModeChangeHandler = () => {
     dispatch({ type: darkMode ? 'DARK_MODE_OFF' : 'DARK_MODE_ON' });
     const newDarkMode = !darkMode;
@@ -84,11 +124,60 @@ export default function Layout({ title, description, children }) {
         <CssBaseline />
         <AppBar position="fixed" className={classes.navbar}>
           <Toolbar>
-            <NextLink href="/" passHref>
-              <Link style={{ textDecoration: 'none' }}>
-                <Typography className={classes.brand}>zonama</Typography>
-              </Link>
-            </NextLink>
+            <Box display="flex" alignItems="center">
+              <IconButton
+                edge="start"
+                aria-label="open drawer"
+                onClick={sidebarOpenHandler}
+              >
+                <MenuIcon className={classes.navbarButton} />
+              </IconButton>
+              <NextLink href="/" passHref>
+                <Link style={{ textDecoration: 'none' }}>
+                  <Typography className={classes.brand}>zonama</Typography>
+                </Link>
+              </NextLink>
+            </Box>
+            <Drawer
+              anchor="left"
+              open={sidebarVisible}
+              onClose={sidebarCloseHandler}
+            >
+              <List>
+                <ListItem>
+                  <Box
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="space-between"
+                  >
+                    <Typography>Shopping by Category</Typography>
+                    <IconButton
+                      aria-label="close"
+                      onClick={sidebarCloseHandler}
+                    >
+                      <CancelIcon />
+                    </IconButton>
+                  </Box>
+                </ListItem>
+                <Divider light />
+
+                {categories.map((category) => (
+                  <NextLink
+                    key={category}
+                    href={`/search?category=${category}`}
+                    passHref
+                  >
+                    <ListItem
+                      button
+                      component="a"
+                      onClick={sidebarCloseHandler}
+                    >
+                      <ListItemText primary={category}></ListItemText>
+                    </ListItem>
+                  </NextLink>
+                ))}
+              </List>
+            </Drawer>
             <div className={classes.grow}></div>
             <div>
               <Switch
@@ -97,16 +186,18 @@ export default function Layout({ title, description, children }) {
               ></Switch>
               <NextLink href="/cart" passHref>
                 <Link style={{ textDecoration: 'none' }}>
-                  {cart.cartItems.length > 0 ? (
-                    <Badge
-                      color="secondary"
-                      badgeContent={cart.cartItems.length}
-                    >
-                      Cart
-                    </Badge>
-                  ) : (
-                    'Cart'
-                  )}
+                  <Typography component="span">
+                    {cart.cartItems.length > 0 ? (
+                      <Badge
+                        color="secondary"
+                        badgeContent={cart.cartItems.length}
+                      >
+                        Cart
+                      </Badge>
+                    ) : (
+                      'Cart'
+                    )}
+                  </Typography>
                 </Link>
               </NextLink>
               {userInfo ? (
@@ -152,7 +243,9 @@ export default function Layout({ title, description, children }) {
                 </>
               ) : (
                 <NextLink href="/login" passHref>
-                  <Link>Login</Link>
+                  <Link>
+                    <Typography>Login</Typography>
+                  </Link>
                 </NextLink>
               )}
             </div>
