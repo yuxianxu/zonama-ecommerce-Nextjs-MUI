@@ -2,11 +2,9 @@ import {
   Button,
   FormControl,
   Grid,
-  InputLabel,
   List,
   ListItem,
   MenuItem,
-  NativeSelect,
   Pagination,
   Rating,
   Select,
@@ -24,7 +22,7 @@ import { Store } from '../utils/Store';
 import useStyles from '../utils/styles';
 import Cancel from '@mui/icons-material/Cancel';
 
-const PAGE_SIZE = 3;
+const PAGE_SIZE = 6;
 
 const prices = [
   {
