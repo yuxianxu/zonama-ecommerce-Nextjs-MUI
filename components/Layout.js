@@ -281,8 +281,8 @@ export default function Layout({ title, description, children }) {
                 </>
               ) : (
                 <NextLink href="/login" passHref>
-                  <Link>
-                    <Typography component="span">{'👤'}&nbsp;&nbsp;Login</Typography>
+                  <Link style={{ textDecoration: 'none' }}>
+                    <Typography component="span">&nbsp;&nbsp;&nbsp;{'👤'}&nbsp;&nbsp;Login</Typography>
                   </Link>
                 </NextLink>
               )}

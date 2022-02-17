@@ -1,26 +1,16 @@
-import {
-  Grid,
-  Card,
-  CardActionArea,
-  CardMedia,
-  CardContent,
-  Typography,
-  CardActions,
-  Button,
-  Rating,
-} from '@mui/material';
+import { Grid } from '@mui/material';
 import axios from 'axios';
-import NextLink from 'next/link';
 // import { useRouter } from 'next/router';
 import { useContext } from 'react';
 import Layout from '../components/Layout';
+import ProductItem from '../components/ProductItem';
 import Product from '../models/Product';
 import db from '../utils/db';
 import { Store } from '../utils/Store';
 
 export default function Home(props) {
   // const router = useRouter();
-  const { state, dispatch } = useContext(Store);
+  const { state, dispatch } = useContext(Store); 
   const { products } = props;
 
   const addToCartHandler = async (product) => {
@@ -44,34 +34,10 @@ export default function Home(props) {
         <Grid container spacing={3}>
           {products.map((product) => (
             <Grid item md={4} key={product.name}>
-              <Card>
-                <NextLink href={`/product/${product.slug}`} passHref>
-                  <CardActionArea>
-                    <CardMedia
-                      component="img"
-                      image={product.image}
-                      title={product.name}
-                    ></CardMedia>
-                    <CardContent>
-                      <Typography>{product.name}</Typography>
-                      <Rating value={product.rating} readOnly></Rating>
-                    </CardContent>
-                  </CardActionArea>
-                </NextLink>
-                <CardActions>
-                  <Typography>
-                    {'$'}
-                    {product.price}
-                  </Typography>
-                  <Button
-                    size="small"
-                    color="primary"
-                    onClick={() => addToCartHandler(product)}
-                  >
-                    Add to cart
-                  </Button>
-                </CardActions>
-              </Card>
+              <ProductItem
+                product={product}
+                addToCartHandler={addToCartHandler}
+              />
             </Grid>
           ))}
         </Grid>
@@ -83,7 +49,7 @@ export default function Home(props) {
 export async function getServerSideProps() {
   await db.connect();
 
-  const products = await Product.find({},'-reviews').lean();
+  const products = await Product.find({}, '-reviews').lean();
 
   await db.disconnect();
 

@@ -1,4 +1,5 @@
 import {
+  Button,
   Grid,
   List,
   ListItem,
@@ -7,12 +8,16 @@ import {
   Typography,
 } from '@mui/material';
 import { Box } from '@mui/system';
+import axios from 'axios';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useContext } from 'react';
 import Layout from '../components/Layout';
+import ProductItem from '../components/ProductItem';
 import Product from '../models/Product';
 import db from '../utils/db';
+import { Store } from '../utils/Store';
 import useStyles from '../utils/styles';
+import Cancel from '@mui/icons-material/Cancel';
 
 const PAGE_SIZE = 3;
 
@@ -62,6 +67,22 @@ export default function Search(props) {
     filterSearch({ category: e.target.value });
   };
 
+  const { state, dispatch } = useContext(Store);
+
+  const addToCartHandler = async (product) => {
+    const existItem = state.cart.cartItems.find((x) => x._id === product._id);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+    const { data } = await axios.get(`/api/products/${product._id}`);
+
+    if (data.countInStock < quantity) {
+      window.alert('Sorry, Product is out of stock');
+      return;
+    }
+
+    dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
+    // router.push('/cart');
+  };
+
   return (
     <Layout title="Search">
       <Grid className={classes.mt1} container spacing={1}>
@@ -84,7 +105,37 @@ export default function Search(props) {
           </List>
         </Grid>
       </Grid>
-      <Grid item md={9}></Grid>
+      <Grid item md={9}>
+        <Grid container justifyContent="space-between" alignItems="center">
+          <Grid item>
+            {products.length === 0 ? 'No' : countProducts} Results
+            {query !== 'all' && query !== '' && ' : ' + query}
+            {category !== 'all' && ' : ' + category}
+            {brand !== 'all' && ' : ' + brand}
+            {price !== 'all' && ' : Price ' + price}
+            {(rating !== 'all') & (' : Rating' + rating + ' & up ')}
+            {(query !== 'all' && query !== '') ||
+            category !== 'all' ||
+            brand !== 'all' ||
+            rating !== 'all' ||
+            price !== 'all' ? (
+              <Button onClick={() => router.push('/search')}>
+                <Cancel />
+              </Button>
+            ) : null}
+          </Grid>
+        </Grid>
+        <Grid container spacing={3}>
+          {products.map((product) => (
+            <Grid item md={4} key={product.name}>
+              <ProductItem
+                product={product}
+                addToCartHandler={addToCartHandler}
+              />
+            </Grid>
+          ))}
+        </Grid>
+      </Grid>
     </Layout>
   );
 }
@@ -98,7 +149,7 @@ export async function getServerSideProps({ query }) {
   const price = query.price || '';
   const rating = query.rating || '';
   const sort = query.sort || '';
-  const searchQuery = query || '';
+  const searchQuery = query.query || '';
 
   const queryFilter =
     searchQuery && searchQuery !== 'all'
@@ -119,7 +170,7 @@ export async function getServerSideProps({ query }) {
           },
         }
       : {};
-
+  // 10-50
   const priceFilter =
     price && price !== 'all'
       ? {
