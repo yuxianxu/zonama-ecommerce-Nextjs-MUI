@@ -1,9 +1,13 @@
 import {
   Button,
   Grid,
+  InputLabel,
   List,
   ListItem,
   MenuItem,
+  NativeSelect,
+  Pagination,
+  Rating,
   Select,
   Typography,
 } from '@mui/material';
@@ -20,6 +24,23 @@ import useStyles from '../utils/styles';
 import Cancel from '@mui/icons-material/Cancel';
 
 const PAGE_SIZE = 3;
+
+const prices = [
+  {
+    name: '$1 to $50',
+    value: '1-50',
+  },
+  {
+    name: '$51 to $200',
+    value: '51-200',
+  },
+  {
+    name: '$201 to $1000',
+    value: '201-1000',
+  },
+];
+
+const ratings = [1, 2, 3, 4, 5];
 
 export default function Search(props) {
   const classes = useStyles();
@@ -67,6 +88,22 @@ export default function Search(props) {
     filterSearch({ category: e.target.value });
   };
 
+  const pageHandler = (e, page) => {
+    filterSearch({ page });
+  };
+  const brandHandler = (e) => {
+    filterSearch({ brand: e.target.value });
+  };
+  const sortHandler = (e) => {
+    filterSearch({ sort: e.target.value });
+  };
+  const priceHandler = (e) => {
+    filterSearch({ price: e.target.value });
+  };
+  const ratingHandler = (e) => {
+    filterSearch({ rating: e.target.value });
+  };
+
   const { state, dispatch } = useContext(Store);
 
   const addToCartHandler = async (product) => {
@@ -90,21 +127,61 @@ export default function Search(props) {
           <List>
             <ListItem>
               <Box className={classes.fullWidth}>
-                <Typography>Categories</Typography>
-                <Select fullWidth value={category} onChange={categoryHandler}>
-                  <MenuItem value="all">All</MenuItem>
+                <InputLabel variant="standard" htmlFor="uncontrolled-native">Categories</InputLabel>
+                <NativeSelect fullWidth value={category} onChange={categoryHandler}>
+                  <option value="all">All</option>
                   {categories &&
                     categories.map((category) => (
-                      <MenuItem key={category} value={category}>
+                      <option key={category} value={category}>
                         {category}
+                      </option>
+                    ))}
+                </NativeSelect>
+              </Box>
+            </ListItem>
+            <ListItem>
+              <Box className={classes.fullWidth}>
+                <Typography>Brands</Typography>
+                <Select fullWidth value={brand} onChange={brandHandler}>
+                  <MenuItem value="all">All</MenuItem>
+                  {brands &&
+                    brands.map((brand) => (
+                      <MenuItem key={brand} value={brand}>
+                        {brand}
                       </MenuItem>
                     ))}
                 </Select>
               </Box>
             </ListItem>
+            <ListItem>
+              <Box className={classes.fullWidth}>
+                <Typography>Prices</Typography>
+                <Select fullWidth value={price} onChange={priceHandler}>
+                  <MenuItem value="all">All</MenuItem>
+                  {prices.map((price) => (
+                    <MenuItem key={price.value} value={price.value}>
+                      {price.name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </Box>
+            </ListItem>
+            <ListItem>
+              <Box className={classes.fullWidth}>
+                <Typography>Rating</Typography>
+                <Select fullWidth value={rating} onChange={ratingHandler}>
+                  <MenuItem value="all">All</MenuItem>
+                  {ratings.map((rating) => (
+                    <MenuItem key={rating} display="flex" value={rating}>
+                      <Rating value={rating} readOnly />
+                      <Typography component="span"> {'&'} Up</Typography>
+                    </MenuItem>
+                  ))}
+                </Select>
+              </Box>
+            </ListItem>
           </List>
         </Grid>
-      </Grid>
       <Grid item md={9}>
         <Grid container justifyContent="space-between" alignItems="center">
           <Grid item>
@@ -113,7 +190,7 @@ export default function Search(props) {
             {category !== 'all' && ' : ' + category}
             {brand !== 'all' && ' : ' + brand}
             {price !== 'all' && ' : Price ' + price}
-            {(rating !== 'all') & (' : Rating' + rating + ' & up ')}
+            {rating !== 'all' && ' : Rating' + rating + ' & up '}
             {(query !== 'all' && query !== '') ||
             category !== 'all' ||
             brand !== 'all' ||
@@ -124,8 +201,20 @@ export default function Search(props) {
               </Button>
             ) : null}
           </Grid>
+          <Grid item>
+            <Typography component="span" className={classes.sort}>
+              Sort by
+            </Typography>
+            <Select value={sort} onChange={sortHandler}>
+              <MenuItem value="featured">Featured</MenuItem>
+              <MenuItem value="lowest">Price: Low to High</MenuItem>
+              <MenuItem value="highest">Price: High to Low</MenuItem>
+              <MenuItem value="toprated">Customer Reviews</MenuItem>
+              <MenuItem value="newest">Newest Arrivals</MenuItem>
+            </Select>
+          </Grid>
         </Grid>
-        <Grid container spacing={3}>
+        <Grid className={classes.mt1} container spacing={3}>
           {products.map((product) => (
             <Grid item md={4} key={product.name}>
               <ProductItem
@@ -135,6 +224,13 @@ export default function Search(props) {
             </Grid>
           ))}
         </Grid>
+        <Pagination
+          className={classes.mt1}
+          defaultPage={parseInt(query.page || '1')}
+          count={pages}
+          onChange={pageHandler}
+        ></Pagination>
+      </Grid>
       </Grid>
     </Layout>
   );

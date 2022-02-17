@@ -86,6 +86,9 @@ const useStyles = makeStyles((theme) => ({
       color: '#000000',
     },
   },
+  sort: {
+    marginRight: 5,
+  }
 }));
 
 export default useStyles;
