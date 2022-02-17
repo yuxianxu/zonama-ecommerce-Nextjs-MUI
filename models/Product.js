@@ -1,3 +1,4 @@
+import { TurnedIn } from '@mui/icons-material';
 import mongoose from 'mongoose';
 
 const reviewSchema = new mongoose.Schema(
@@ -25,12 +26,13 @@ const productSchema = new mongoose.Schema(
     countInStock: { type: Number, required: true, default: 0 },
     description: { type: String, required: true },
     reviews: [reviewSchema],
+    featuredImage: { type: String },
+    isFeatured: { type: Boolean, required: true, default: false },
   },
   {
     timestamps: true,
   }
 );
-
 
 const Product =
   mongoose.models.Product || mongoose.model('Product', productSchema);

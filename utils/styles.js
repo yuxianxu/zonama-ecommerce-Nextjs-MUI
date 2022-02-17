@@ -92,6 +92,15 @@ const useStyles = makeStyles((theme) => ({
   mt1: {
     marginTop: '1rem'
   },
+  mt2: {
+    marginTop: '2rem',
+    width: '100%',
+    height: '26vw',
+  },
+  responsive: {
+    width: '100%',
+    height: 'auto',
+  }
 }));
 
 export default useStyles;
