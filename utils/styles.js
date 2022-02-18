@@ -1,6 +1,5 @@
 import { makeStyles } from '@mui/styles';
 
-
 const useStyles = makeStyles((theme) => ({
   navbar: {
     backgroundColor: '#203040',
@@ -65,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
   },
   menuButton: { padding: 0 },
-  
+
   searchForm: {
     border: '1px solid white',
     backgroundColor: 'white',
@@ -90,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: 5,
   },
   mt1: {
-    marginTop: '1rem'
+    marginTop: '1rem',
   },
   mt2: {
     marginTop: '2rem',
@@ -100,7 +99,20 @@ const useStyles = makeStyles((theme) => ({
   responsive: {
     width: '100%',
     height: 'auto',
-  }
+  },
+  fullContainer: { height: '100vh' },
+  mapInputBox: {
+    position: 'absolute',
+    display: 'flex',
+    left: 0,
+    right: 0,
+    margin: '10px auto',
+    width: 300,
+    height: 40,
+    '& input': {
+      width: 250,
+    },
+  },
 }));
 
 export default useStyles;
