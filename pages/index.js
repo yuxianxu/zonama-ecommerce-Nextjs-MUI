@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { Grid, Link, Typography } from '@mui/material';
 import axios from 'axios';
 import NextLink from 'next/link';

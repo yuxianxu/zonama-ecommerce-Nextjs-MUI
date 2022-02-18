@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from 'react';
 import Head from 'next/head';
 import NextLink from 'next/link';
@@ -90,6 +91,9 @@ export default function Layout({ title, description, children }) {
     }
   };
 
+  useEffect(() => {
+    fetchCategories();
+  }, []);
   const [query, setQuery] = useState('');
   const queryChangeHandler = (e) => {
     setQuery(e.target.value);
@@ -100,9 +104,6 @@ export default function Layout({ title, description, children }) {
     router.push(`/search?query=${query}`);
   };
 
-  useEffect(() => {
-    fetchCategories();
-  }, []);
 
   const darkModeChangeHandler = () => {
     dispatch({ type: darkMode ? 'DARK_MODE_OFF' : 'DARK_MODE_ON' });
