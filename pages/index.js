@@ -80,7 +80,7 @@ export async function getServerSideProps() {
     '-reviews'
   )
     .lean()
-    .limit(3);
+    .limit(5);
   const topRatedProductsDocs = await Product.find({}, '-reviews')
     .lean()
     .sort({
