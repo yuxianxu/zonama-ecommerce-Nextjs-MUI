@@ -76,23 +76,19 @@ export default function Home(props) {
 
 export async function getServerSideProps() {
   await db.connect();
-
   const featuredProductsDocs = await Product.find(
     { isFeatured: true },
     '-reviews'
   )
     .lean()
-    .limit(3);
-
+    .limit(5);
   const topRatedProductsDocs = await Product.find({}, '-reviews')
     .lean()
     .sort({
       rating: -1,
     })
     .limit(6);
-
   await db.disconnect();
-
   return {
     props: {
       featuredProducts: featuredProductsDocs.map(db.convertDocToObj),

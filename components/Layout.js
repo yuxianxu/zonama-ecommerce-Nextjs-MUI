@@ -177,6 +177,11 @@ export default function Layout({ title, description, children }) {
                   </Box>
                 </ListItem>
                 <Divider light />
+                <NextLink href={'/search'} passHref>
+                  <ListItem button component="a" onClick={sidebarCloseHandler}>
+                    All
+                  </ListItem>
+                </NextLink>
 
                 {categories.map((category) => (
                   <NextLink
@@ -231,7 +236,8 @@ export default function Layout({ title, description, children }) {
                         color="secondary"
                         badgeContent={cart.cartItems.length}
                       >
-                        {'Cart'}{'🛒'}
+                        {'Cart'}
+                        {'🛒'}
                       </Badge>
                     ) : (
                       '🛒  Cart'
@@ -247,7 +253,8 @@ export default function Layout({ title, description, children }) {
                     onClick={loginClickHandler}
                     className={classes.navbarButton}
                   >
-                  &nbsp; &nbsp;&nbsp; &nbsp; {" Hello,"} {userInfo.name} &nbsp;{'👤'}
+                    &nbsp; &nbsp;&nbsp; &nbsp; {' Hi,'} {userInfo.name}{' '}
+                    &nbsp;{'👤'}
                   </Button>
                   <Menu
                     id="simple-menu"
@@ -283,7 +290,9 @@ export default function Layout({ title, description, children }) {
               ) : (
                 <NextLink href="/login" passHref>
                   <Link style={{ textDecoration: 'none' }}>
-                    <Typography component="span">&nbsp;&nbsp;&nbsp;{'👤'}&nbsp;&nbsp;Login</Typography>
+                    <Typography component="span">
+                      &nbsp;&nbsp;&nbsp;{'👤'}&nbsp;&nbsp;Login
+                    </Typography>
                   </Link>
                 </NextLink>
               )}
