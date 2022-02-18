@@ -1,4 +1,3 @@
-import { TurnedIn } from '@mui/icons-material';
 import mongoose from 'mongoose';
 
 const reviewSchema = new mongoose.Schema(
