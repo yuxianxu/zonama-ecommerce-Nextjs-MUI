@@ -19,7 +19,7 @@ import ProductItem from '../components/ProductItem';
 import Product from '../models/Product';
 import db from '../utils/db';
 import { Store } from '../utils/Store';
-import useStyles from '../utils/styles';
+import classes from '../utils/classes';
 import Cancel from '@mui/icons-material/Cancel';
 
 const PAGE_SIZE = 6;
@@ -42,7 +42,6 @@ const prices = [
 const ratings = [1, 2, 3, 4, 5];
 
 export default function Search(props) {
-  const classes = useStyles();
   const router = useRouter();
   const {
     query = 'all',
@@ -120,21 +119,19 @@ export default function Search(props) {
   };
 
   return (
-    <Layout title="Search">
-      <Grid className={classes.mt1} container spacing={1}>
+    <Layout title="search">
+      <Grid sx={classes.section} container spacing={1}>
         <Grid item md={3}>
           <List>
-            <FormControl variant="standard" fullWidth sx={{ m: 1, minWidth: 260 }}>
+            <FormControl
+              variant="standard"
+              fullWidth
+              sx={{ m: 1, minWidth: 260 }}
+            >
               <ListItem>
-                <Box className={classes.fullWidth}>
-                  <Typography>
-                    Categories
-                  </Typography>
-                  <Select
-                    fullWidth
-                    value={category}
-                    onChange={categoryHandler}
-                  >
+                <Box sx={classes.fullWidth}>
+                  <Typography>Categories</Typography>
+                  <Select fullWidth value={category} onChange={categoryHandler}>
                     <MenuItem value="all">All</MenuItem>
                     {categories &&
                       categories.map((category) => (
@@ -146,7 +143,7 @@ export default function Search(props) {
                 </Box>
               </ListItem>
               <ListItem>
-                <Box className={classes.fullWidth}>
+                <Box sx={classes.fullWidth}>
                   <Typography>Brands</Typography>
                   <Select fullWidth value={brand} onChange={brandHandler}>
                     <MenuItem value="all">All</MenuItem>
@@ -160,7 +157,7 @@ export default function Search(props) {
                 </Box>
               </ListItem>
               <ListItem>
-                <Box className={classes.fullWidth}>
+                <Box sx={classes.fullWidth}>
                   <Typography>Prices</Typography>
                   <Select fullWidth value={price} onChange={priceHandler}>
                     <MenuItem value="all">All</MenuItem>
@@ -173,7 +170,7 @@ export default function Search(props) {
                 </Box>
               </ListItem>
               <ListItem>
-                <Box className={classes.fullWidth}>
+                <Box sx={classes.fullWidth}>
                   <Typography>Rating</Typography>
                   <Select fullWidth value={rating} onChange={ratingHandler}>
                     <MenuItem value="all">All</MenuItem>
@@ -209,22 +206,25 @@ export default function Search(props) {
               ) : null}
             </Grid>
             <Grid item>
-            <FormControl variant="standard" fullWidth sx={{ m: 1, minWidth: 260 }}>
-
-              <Typography component="span" className={classes.sort}>
-                Sort by
-              </Typography>
-              <Select value={sort} onChange={sortHandler}>
-                <MenuItem value="featured">Featured</MenuItem>
-                <MenuItem value="lowest">Price: Low to High</MenuItem>
-                <MenuItem value="highest">Price: High to Low</MenuItem>
-                <MenuItem value="toprated">Customer Reviews</MenuItem>
-                <MenuItem value="newest">Newest Arrivals</MenuItem>
-              </Select>
+              <FormControl
+                variant="standard"
+                fullWidth
+                sx={{ m: 1, minWidth: 260 }}
+              >
+                <Typography component="span" sx={classes.sort}>
+                  Sort by
+                </Typography>
+                <Select value={sort} onChange={sortHandler}>
+                  <MenuItem value="featured">Featured</MenuItem>
+                  <MenuItem value="lowest">Price: Low to High</MenuItem>
+                  <MenuItem value="highest">Price: High to Low</MenuItem>
+                  <MenuItem value="toprated">Customer Reviews</MenuItem>
+                  <MenuItem value="newest">Newest Arrivals</MenuItem>
+                </Select>
               </FormControl>
             </Grid>
           </Grid>
-          <Grid className={classes.mt1} container spacing={3}>
+          <Grid sx={classes.section} container spacing={3}>
             {products.map((product) => (
               <Grid item md={4} key={product.name}>
                 <ProductItem
@@ -235,7 +235,7 @@ export default function Search(props) {
             ))}
           </Grid>
           <Pagination
-            className={classes.mt1}
+            sx={classes.section}
             defaultPage={parseInt(query.page || '1')}
             count={pages}
             onChange={pageHandler}

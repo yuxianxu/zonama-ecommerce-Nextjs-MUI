@@ -10,11 +10,10 @@ import ProductItem from '../components/ProductItem';
 import Product from '../models/Product';
 import db from '../utils/db';
 import { Store } from '../utils/Store';
-import useStyles from '../utils/styles';
+import classes from '../utils/classes';
 
 export default function Home(props) {
   // const router = useRouter();
-  const classes = useStyles();
   const { state, dispatch } = useContext(Store);
   const { featuredProducts, topRatedProducts } = props;
 
@@ -35,25 +34,26 @@ export default function Home(props) {
   return (
     <Layout>
       <Carousel
-        className={classes.mt2}
+        sx={classes.mt2}
         animation="fade"
         stopAutoPlayOnHover
         duration="1000"
         swipe
         navButtonsAlwaysVisible
+        layout='cover'
       >
         {featuredProducts.map((product) => (
           <NextLink
             key={product._id}
             href={`/product/${product.slug}`}
             passHref
+            
           >
-            <Link>
+            <Link >
               <img
                 src={product.featuredImage}
-                className={classes.responsive}
                 alt={product.name}
-                layout='contain'
+                sx={classes.responsive}
               />
             </Link>
           </NextLink>

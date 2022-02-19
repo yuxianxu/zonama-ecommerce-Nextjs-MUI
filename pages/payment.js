@@ -14,13 +14,12 @@ import { useRouter } from 'next/router';
 import { useSnackbar } from 'notistack';
 import React, { useContext, useEffect, useState } from 'react';
 import CheckoutWizard from '../components/CheckoutWizard';
+import Form from '../components/Form';
 import Layout from '../components/Layout';
 import { Store } from '../utils/Store';
-import useStyles from '../utils/styles';
 
 export default function Payment() {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
-  const classes = useStyles();
   const router = useRouter();
   const [paymentMethod, setPaymentMethod] = useState('');
   const { state, dispatch } = useContext(Store);
@@ -50,7 +49,7 @@ export default function Payment() {
   return (
     <Layout title="Payment Method">
       <CheckoutWizard activeStep={2}></CheckoutWizard>
-      <form className={classes.form} onSubmit={submitHandler}>
+      <Form onSubmit={submitHandler}>
         <Typography component="h1" variant="h1">
           Payment Method
         </Typography>
@@ -92,12 +91,13 @@ export default function Payment() {
               type="button"
               variant="contained"
               onClick={() => router.push('/shipping')}
+              color='inherit'
             >
               Back
             </Button>
           </ListItem>
         </List>
-      </form>
+      </Form>
     </Layout>
   );
 }

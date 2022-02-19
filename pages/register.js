@@ -9,7 +9,6 @@ import {
 } from '@mui/material';
 import React, { useContext, useEffect } from 'react';
 import Layout from '../components/Layout';
-import useStyles from '../utils/styles';
 import NextLink from 'next/link';
 import axios from 'axios';
 import { Store } from '../utils/Store';
@@ -18,6 +17,7 @@ import Cookies from 'js-cookie';
 import { Controller, useForm } from 'react-hook-form';
 import { useSnackbar } from 'notistack';
 import { getError } from '../utils/error';
+import Form from '../components/Form';
 
 export default function Register() {
   const {
@@ -38,7 +38,6 @@ export default function Register() {
     }
   }, []);
 
-  const classes = useStyles();
   const submitHandler = async ({ name, email, password, confirmPassword }) => {
     closeSnackbar();
     if (password !== confirmPassword) {
@@ -61,7 +60,7 @@ export default function Register() {
   };
   return (
     <Layout title="Register">
-      <form onSubmit={handleSubmit(submitHandler)} className={classes.form}>
+      <Form onSubmit={handleSubmit(submitHandler)}>
         <Typography component="h1" variant="h1">
           Register
         </Typography>
@@ -194,7 +193,7 @@ export default function Register() {
             </NextLink>
           </ListItem>
         </List>
-      </form>
+      </Form>
     </Layout>
   );
 }

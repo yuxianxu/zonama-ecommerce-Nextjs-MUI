@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import {
+  Box,
   Button,
   Card,
   CircularProgress,
@@ -23,7 +24,7 @@ import NextLink from 'next/link';
 import { Store } from '../../utils/Store';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import useStyles from '../../utils/styles';
+import classes from '../../utils/classes';
 import { useSnackbar } from 'notistack';
 import { getError } from '../../utils/error';
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
@@ -65,7 +66,6 @@ function reducer(state, action) {
 function Order({ params }) {
   const orderId = params.id;
   const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
-  const classes = useStyles();
   const router = useRouter();
   const { state } = useContext(Store);
   const { userInfo } = state;
@@ -202,11 +202,11 @@ function Order({ params }) {
       {loading ? (
         <CircularProgress />
       ) : error ? (
-        <Typography className={classes.error}>{error}</Typography>
+        <Typography sx={classes.error}>{error}</Typography>
       ) : (
         <Grid container spacing={1}>
           <Grid item md={9} xs={12}>
-            <Card className={classes.section}>
+            <Card sx={classes.section}>
               <List>
                 <ListItem>
                   <Typography component="h2" variant="h2">
@@ -217,6 +217,16 @@ function Order({ params }) {
                   {shippingAddress.fullName}, {shippingAddress.address},{' '}
                   {shippingAddress.city}, {shippingAddress.postalCode},{' '}
                   {shippingAddress.country}
+                  &nbsp;
+                  {shippingAddress.location && (
+                    <Link
+                      variant="button"
+                      target="_new"
+                      href={`https://maps.google.com?q=${shippingAddress.location.lat},${shippingAddress.location.lng}`}
+                    >
+                      Show On Map
+                    </Link>
+                  )}
                 </ListItem>
                 <ListItem>
                   Status:{' '}
@@ -226,7 +236,7 @@ function Order({ params }) {
                 </ListItem>
               </List>
             </Card>
-            <Card className={classes.section}>
+            <Card sx={classes.section}>
               <List>
                 <ListItem>
                   <Typography component="h2" variant="h2">
@@ -239,7 +249,7 @@ function Order({ params }) {
                 </ListItem>
               </List>
             </Card>
-            <Card className={classes.section}>
+            <Card sx={classes.section}>
               <List>
                 <ListItem>
                   <Typography component="h2" variant="h2">
@@ -299,7 +309,7 @@ function Order({ params }) {
             </Card>
           </Grid>
           <Grid item md={3} xs={12}>
-            <Card className={classes.section}>
+            <Card sx={classes.section}>
               <List>
                 <ListItem>
                   <Typography variant="h2">Order Summary</Typography>
@@ -365,13 +375,13 @@ function Order({ params }) {
                     {isPending ? (
                       <CircularProgress />
                     ) : (
-                      <div className={classes.fullWidth}>
+                      <Box sx={classes.fullWidth}>
                         <PayPalButtons
                           createOrder={createOrder}
                           onApprove={onApprove}
                           onError={onError}
                         ></PayPalButtons>
-                      </div>
+                      </Box>
                     )}
                   </ListItem>
                 )}
