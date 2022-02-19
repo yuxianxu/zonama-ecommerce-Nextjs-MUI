@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { Grid, Link, Typography } from '@mui/material';
+import { CardMedia, Grid, Link, Typography } from '@mui/material';
 import axios from 'axios';
 import NextLink from 'next/link';
 // import { useRouter } from 'next/router';
@@ -39,22 +39,27 @@ export default function Home(props) {
         stopAutoPlayOnHover
         duration="1000"
         swipe
+        indicators
         navButtonsAlwaysVisible
-        layout='cover'
+        layout="cover"
       >
         {featuredProducts.map((product) => (
           <NextLink
             key={product._id}
             href={`/product/${product.slug}`}
             passHref
-            
           >
-            <Link >
-              <img
-                src={product.featuredImage}
+            <Link>
+              <CardMedia
+                // component="img"
+                image={product.featuredImage}
                 alt={product.name}
                 sx={classes.responsive}
-              />
+                passHref
+              >
+                <Typography sx={classes.heroText}>{product.name}</Typography>
+                <Typography sx={classes.heroPrice}>{'$'}{product.price}</Typography>
+              </CardMedia>
             </Link>
           </NextLink>
         ))}
