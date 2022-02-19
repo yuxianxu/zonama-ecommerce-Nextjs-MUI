@@ -1,6 +1,20 @@
-import { makeStyles } from '@mui/styles';
+const classes = {
+  appbar: {
+    backgroundColor: '#203040',
+    '& a': {
+      color: '#ffffff',
+      marginLeft: 1,
+    },
+  },
 
-const useStyles = makeStyles((theme) => ({
+  hidden: {
+    display: 'none',
+  },
+
+  visible: {
+    display: 'initial',
+  },
+
   navbar: {
     backgroundColor: '#203040',
     '& a': {
@@ -19,16 +33,14 @@ const useStyles = makeStyles((theme) => ({
   main: {
     minHeight: '80vh',
   },
-  // footer: {
-  //   textAlign: 'center',
-  // },
+  footer: {
+    textAlign: 'center',
+    marginTop: 5,
+    marginBottom: 5,
+  },
   nav: {
     textAlign: 'center',
     marginTop: 10,
-  },
-  section: {
-    marginTop: 10,
-    marginBottom: 10,
   },
   form: {
     width: '100%',
@@ -66,38 +78,46 @@ const useStyles = makeStyles((theme) => ({
   searchForm: {
     border: '1px solid white',
     backgroundColor: 'white',
-    borderRadius: 5,
+    borderRadius: 3,
   },
   searchInput: {
-    paddingLeft: 5,
+    paddingLeft: 0.2,
     color: '#000000',
     '& ::placeholder': {
       color: '#606060',
     },
   },
-  iconButton: {
+  section: {
+    marginTop: 1,
+    marginBottom: 1,
+  },
+  searchButton: {
     backgroundColor: '#f8c040',
-    padding: 5,
-    borderRadius: '0 5px 5px 0',
+    padding: 1,
+    borderRadius: '0 12px 12px 0',
     '& span': {
       color: '#000000',
     },
   },
   sort: {
-    marginRight: 5,
+    marginRight: 1,
   },
   mt1: {
     marginTop: '1rem',
   },
   mt2: {
     marginTop: '2rem',
-    width: '100%',
-    height: '26vw',
+    minWidth: '100%',
+    height: '30vw',
   },
+
   responsive: {
-    width: '100%',
-    height: 'auto',
+    top: 0,
+    left: 0,
+    position: 'absolute',
   },
+
+  fullHeight: { height: '100vh' },
   fullContainer: { height: '100vh' },
   mapInputBox: {
     position: 'absolute',
@@ -111,6 +131,6 @@ const useStyles = makeStyles((theme) => ({
       width: 250,
     },
   },
-}));
+};
 
-export default useStyles;
+export default classes;

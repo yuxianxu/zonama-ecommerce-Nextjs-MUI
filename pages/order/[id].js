@@ -22,7 +22,7 @@ import NextLink from 'next/link';
 import { Store } from '../../utils/Store';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import useStyles from '../../utils/styles';
+import useStyles from '../../utils/classes';
 import { useSnackbar } from 'notistack';
 import { getError } from '../../utils/error';
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
@@ -216,6 +216,17 @@ function Order({ params }) {
                   {shippingAddress.fullName}, {shippingAddress.address},{' '}
                   {shippingAddress.city}, {shippingAddress.postalCode},{' '}
                   {shippingAddress.country}
+                  &nbsp;
+                  {shippingAddress.location && (
+                    <Link
+                    variant='button'
+                    target='_new'
+                    href={`https://maps.google.com?q=${shippingAddress.location.lat},${shippingAddress.location.lng}`}
+                    >
+                    Show On Map
+                    </Link>
+                  )}
+
                 </ListItem>
                 <ListItem>
                   Status:{' '}

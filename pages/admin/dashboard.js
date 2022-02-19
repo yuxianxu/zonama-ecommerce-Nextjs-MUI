@@ -18,7 +18,7 @@ import React, { useContext, useEffect, useReducer } from 'react';
 import { getError } from '../../utils/error';
 import { Store } from '../../utils/Store';
 import Layout from '../../components/Layout';
-import useStyles from '../../utils/styles';
+import classes from '../../utils/classes';
 import { Bar } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -78,7 +78,7 @@ function AdminDashboard() {
     <Layout title="Order History">
       <Grid container spacing={1}>
         <Grid item md={3} xs={12}>
-          <Card className={classes.section}>
+          <Card sx={classes.section}>
             <List>
               <NextLink href="/admin/dashboard" passHref>
                 <ListItem selected button components="a">
@@ -104,13 +104,13 @@ function AdminDashboard() {
           </Card>
         </Grid>
         <Grid item md={9} xs={12}>
-          <Card className={classes.section}>
+          <Card sx={classes.section}>
             <List>
               <ListItem>
                 {loading ? (
                   <CircularProgress />
                 ) : error ? (
-                  <Typography className={classes.error}>{error}</Typography>
+                  <Typography sx={classes.error}>{error}</Typography>
                 ) : (
                   <Grid container spacing={5}>
                     <Grid item md={3}>
