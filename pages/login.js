@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
   Button,
   Link,
@@ -8,7 +9,6 @@ import {
 } from '@mui/material';
 import React, { useContext, useEffect } from 'react';
 import Layout from '../components/Layout';
-import useStyles from '../utils/styles';
 import NextLink from 'next/link';
 import axios from 'axios';
 import { Store } from '../utils/Store';
@@ -17,6 +17,7 @@ import Cookies from 'js-cookie';
 import { Controller, useForm } from 'react-hook-form';
 import { useSnackbar } from 'notistack';
 import { getError } from '../utils/error';
+import Form from '../components/Form';
 
 export default function Login() {
   const {
@@ -38,7 +39,6 @@ export default function Login() {
     }
   }, []);
 
-  const classes = useStyles();
   const submitHandler = async ({ email, password }) => {
     closeSnackbar();
     try {
@@ -55,7 +55,7 @@ export default function Login() {
   };
   return (
     <Layout title="Login">
-      <form onSubmit={handleSubmit(submitHandler)} className={classes.form}>
+      <Form onSubmit={handleSubmit(submitHandler)}>
         <Typography component="h1" variant="h1">
           Login
         </Typography>
@@ -130,7 +130,7 @@ export default function Login() {
             </NextLink>
           </ListItem>
         </List>
-      </form>
+      </Form>
     </Layout>
   );
 }

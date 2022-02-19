@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from 'react';
 import Head from 'next/head';
 import NextLink from 'next/link';
@@ -28,7 +29,6 @@ import {
   Box,
   InputBase,
   useMediaQuery,
-  FormControlLabel,
 } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from '@mui/material/styles';
@@ -38,6 +38,7 @@ import { useRouter } from 'next/router';
 import { useSnackbar } from 'notistack';
 import axios from 'axios';
 import { getError } from '../utils/error';
+import Form from './Form';
 
 export default function Layout({ title, description, children }) {
   const router = useRouter();
@@ -258,7 +259,7 @@ export default function Layout({ title, description, children }) {
             </Drawer>
 
             <Box sx={isDesktop ? classes.visible : classes.hidden}>
-              <form onSubmit={submitHandler}>
+              <Form onSubmit={submitHandler}>
                 <Box sx={classes.searchForm}>
                   <InputBase
                     name="query"
@@ -274,7 +275,7 @@ export default function Layout({ title, description, children }) {
                     <SearchIcon />
                   </IconButton>
                 </Box>
-              </form>
+              </Form>
             </Box>
 
             <Box>

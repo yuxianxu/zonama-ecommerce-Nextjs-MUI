@@ -235,6 +235,7 @@ export default function Shipping() {
               variant="contained"
               type="button"
               onClick={chooseLocationHandler}
+              color='success'
             >
               Choose on the map
             </Button>

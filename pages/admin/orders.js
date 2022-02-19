@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
   Button,
   Card,
@@ -22,7 +23,7 @@ import React, { useContext, useEffect, useReducer } from 'react';
 import { getError } from '../../utils/error';
 import { Store } from '../../utils/Store';
 import Layout from '../../components/Layout';
-import useStyles from '../../utils/styles';
+import classes from '../../utils/classes';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -49,7 +50,6 @@ function reducer(state, action) {
 function AdminOrders() {
   const { state } = useContext(Store);
   const router = useRouter();
-  const classes = useStyles();
   const { userInfo } = state;
 
   const [{ loading, error, orders }, dispatch] = useReducer(reducer, {
@@ -57,7 +57,6 @@ function AdminOrders() {
     orders: [],
     error: '',
   });
- 
 
   useEffect(() => {
     if (!userInfo) {
@@ -82,10 +81,10 @@ function AdminOrders() {
     <Layout title="Order History">
       <Grid container spacing={1}>
         <Grid item md={3} xs={12}>
-          <Card className={classes.section}>
+          <Card sx={classes.section}>
             <List>
               <NextLink href="/admin/dashboard" passHref>
-                <ListItem  button components="a">
+                <ListItem button components="a">
                   <ListItemText primary="Admin Dashboard"></ListItemText>
                 </ListItem>
               </NextLink>
@@ -95,7 +94,7 @@ function AdminOrders() {
                 </ListItem>
               </NextLink>
               <NextLink href="/admin/products" passHref>
-                <ListItem   button components="a">
+                <ListItem button components="a">
                   <ListItemText primary="Products"></ListItemText>
                 </ListItem>
               </NextLink>
@@ -108,7 +107,7 @@ function AdminOrders() {
           </Card>
         </Grid>
         <Grid item md={9} xs={12}>
-          <Card className={classes.section}>
+          <Card sx={classes.section}>
             <List>
               <ListItem>
                 <Typography component="h1" variant="h1">
@@ -119,7 +118,7 @@ function AdminOrders() {
                 {loading ? (
                   <CircularProgress />
                 ) : error ? (
-                  <Typography className={classes.error}>{error}</Typography>
+                  <Typography sx={classes.error}>{error}</Typography>
                 ) : (
                   <TableContainer>
                     <Table>
@@ -142,7 +141,10 @@ function AdminOrders() {
                               {order.user ? order.user.name : 'DELETED USER'}
                             </TableCell>
                             <TableCell>{order.createAt}</TableCell>
-                            <TableCell>{'$'}{order.totalPrice}</TableCell>
+                            <TableCell>
+                              {'$'}
+                              {order.totalPrice}
+                            </TableCell>
                             <TableCell>
                               {order.isPaid
                                 ? `paid at ${order.paidAt}`

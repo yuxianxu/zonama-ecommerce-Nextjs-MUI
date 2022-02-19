@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
   Button,
   Card,
@@ -22,7 +23,7 @@ import React, { useContext, useEffect, useReducer } from 'react';
 import { getError } from '../../utils/error';
 import { Store } from '../../utils/Store';
 import Layout from '../../components/Layout';
-import useStyles from '../../utils/styles';
+import classes from '../../utils/classes';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -64,7 +65,6 @@ function reducer(state, action) {
 function AdminProducts() {
   const { state } = useContext(Store);
   const router = useRouter();
-  const classes = useStyles();
   const { userInfo } = state;
 
   const [
@@ -144,7 +144,7 @@ function AdminProducts() {
     <Layout title="Products">
       <Grid container spacing={1}>
         <Grid item md={3} xs={12}>
-          <Card className={classes.section}>
+          <Card sx={classes.section}>
             <List>
               <NextLink href="/admin/dashboard" passHref>
                 <ListItem button components="a">
@@ -170,7 +170,7 @@ function AdminProducts() {
           </Card>
         </Grid>
         <Grid item md={9} xs={12}>
-          <Card className={classes.section}>
+          <Card sx={classes.section}>
             <List>
               <ListItem>
                 <Grid container alignItems="center">
@@ -196,7 +196,7 @@ function AdminProducts() {
                 {loading ? (
                   <CircularProgress />
                 ) : error ? (
-                  <Typography className={classes.error}>{error}</Typography>
+                  <Typography sx={classes.error}>{error}</Typography>
                 ) : (
                   <TableContainer>
                     <Table>
@@ -230,7 +230,11 @@ function AdminProducts() {
                                 href={`/admin/product/${product._id}`}
                                 passHref
                               >
-                                <Button size="small" variant="contained">
+                                <Button
+                                  size="small"
+                                  variant="contained"
+                                  color="success"
+                                >
                                   Edit
                                 </Button>
                               </NextLink>{' '}
@@ -238,6 +242,7 @@ function AdminProducts() {
                                 onClick={() => deleteHandler(product._id)}
                                 size="small"
                                 variant="contained"
+                                color="warning"
                               >
                                 Delete
                               </Button>

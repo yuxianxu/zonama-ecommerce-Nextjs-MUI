@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
   Button,
   Card,
@@ -46,7 +47,6 @@ function reducer(state, action) {
 function AdminDashboard() {
   const { state } = useContext(Store);
   const router = useRouter();
-  const classes = useStyles();
   const { userInfo } = state;
 
   const [{ loading, error, summary }, dispatch] = useReducer(reducer, {
@@ -54,7 +54,6 @@ function AdminDashboard() {
     summary: { salesData: [] },
     error: '',
   });
-
 
   useEffect(() => {
     if (!userInfo) {
@@ -86,12 +85,12 @@ function AdminDashboard() {
                 </ListItem>
               </NextLink>
               <NextLink href="/admin/orders" passHref>
-                <ListItem  button components="a">
+                <ListItem button components="a">
                   <ListItemText primary="Orders"></ListItemText>
                 </ListItem>
               </NextLink>
               <NextLink href="/admin/products" passHref>
-                <ListItem  button components="a">
+                <ListItem button components="a">
                   <ListItemText primary="Products"></ListItemText>
                 </ListItem>
               </NextLink>
@@ -117,7 +116,8 @@ function AdminDashboard() {
                       <Card raised>
                         <CardContent>
                           <Typography variant="h1">
-                          {'$'}{summary.ordersPrice}
+                            {'$'}
+                            {summary.ordersPrice}
                           </Typography>
                           <Typography>Sales</Typography>
                         </CardContent>

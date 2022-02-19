@@ -13,15 +13,17 @@ import {
   Rating,
   TextField,
   CircularProgress,
+  Box,
 } from '@mui/material';
 import Layout from '../../components/Layout';
-import useStyles from '../../utils/styles';
+import classes from '../../utils/classes';
 import db from '../../utils/db';
 import Product from '../../models/Product';
 import axios from 'axios';
 import { Store } from '../../utils/Store';
 import { getError } from '../../utils/error';
 import { useSnackbar } from 'notistack';
+import Form from '../../components/Form';
 // import { useRouter } from 'next/router';
 
 export default function ProductScreen(props) {
@@ -30,7 +32,6 @@ export default function ProductScreen(props) {
   const { userInfo } = state;
 
   const { product } = props;
-  const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
 
   const [reviews, setReviews] = useState([]);
@@ -75,7 +76,7 @@ export default function ProductScreen(props) {
   }, []);
 
   if (!product) {
-    return <div>Product Not Found</div>;
+    return <Box>Product Not Found</Box>;
   }
 
   const addToCartHandler = async () => {
@@ -94,13 +95,13 @@ export default function ProductScreen(props) {
 
   return (
     <Layout title={product.name} description={product.description}>
-      <div className={classes.section}>
+      <Box sx={classes.section}>
         <NextLink href="/" passHref>
           <Link>
             <Typography>back to products</Typography>
           </Link>
         </NextLink>
-      </div>
+      </Box>
       <Grid container spacing={1}>
         <Grid item md={6} xs={12}>
           <Image
@@ -183,7 +184,7 @@ export default function ProductScreen(props) {
         {reviews.map((review) => (
           <ListItem key={review._id}>
             <Grid container>
-              <Grid item className={classes.reviewItem}>
+              <Grid item sx={classes.reviewItem}>
                 <Typography>
                   <strong>{review.name}</strong>
                 </Typography>
@@ -198,7 +199,7 @@ export default function ProductScreen(props) {
         ))}
         <ListItem>
           {userInfo ? (
-            <form onSubmit={submitHandler} className={classes.reviewForm}>
+            <Form onSubmit={submitHandler} sx={classes.reviewForm}>
               <List>
                 <ListItem>
                   <Typography variant="h2">Leave your review</Typography>
@@ -233,7 +234,7 @@ export default function ProductScreen(props) {
                   {loading && <CircularProgress />}
                 </ListItem>
               </List>
-            </form>
+            </Form>
           ) : (
             <Typography variant="h2">
               Please {''}

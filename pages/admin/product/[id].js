@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
   Button,
   Card,
@@ -19,9 +20,10 @@ import React, { useContext, useEffect, useReducer, useState } from 'react';
 import { getError } from '../../../utils/error';
 import { Store } from '../../../utils/Store';
 import Layout from '../../../components/Layout';
-import useStyles from '../../../utils/styles';
+import classes from '../../../utils/classes';
 import { Controller, useForm } from 'react-hook-form';
 import { useSnackbar } from 'notistack';
+import Form from '../../../components/Form';
 
 function reducer(state, action) {
   switch (action.type) {
@@ -68,7 +70,6 @@ function ProductEdit({ params }) {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   const router = useRouter();
-  const classes = useStyles();
   const { userInfo } = state;
 
   useEffect(() => {
@@ -169,7 +170,7 @@ function ProductEdit({ params }) {
     <Layout title={`Edit Product ${productId}`}>
       <Grid container spacing={1}>
         <Grid item md={3} xs={12}>
-          <Card className={classes.section}>
+          <Card sx={classes.section}>
             <List>
               <NextLink href="/admin/dashboard" passHref>
                 <ListItem button components="a">
@@ -195,7 +196,7 @@ function ProductEdit({ params }) {
           </Card>
         </Grid>
         <Grid item md={9} xs={12}>
-          <Card className={classes.section}>
+          <Card sx={classes.section}>
             <List>
               <ListItem>
                 <Typography component="h1" variant="h1">
@@ -204,16 +205,11 @@ function ProductEdit({ params }) {
               </ListItem>
               <ListItem>
                 {loading && <CircularProgress />}
-                {error && (
-                  <Typography className={classes.error}>{error}</Typography>
-                )}
+                {error && <Typography sx={classes.error}>{error}</Typography>}
               </ListItem>
 
               <ListItem>
-                <form
-                  onSubmit={handleSubmit(submitHandler)}
-                  className={classes.form}
-                >
+                <Form onSubmit={handleSubmit(submitHandler)}>
                   <List>
                     <ListItem>
                       <Controller
@@ -460,7 +456,7 @@ function ProductEdit({ params }) {
                       {loadingUpdate && <CircularProgress />}
                     </ListItem>
                   </List>
-                </form>
+                </Form>
               </ListItem>
             </List>
           </Card>
