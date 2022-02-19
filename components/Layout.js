@@ -29,6 +29,7 @@ import {
   Box,
   InputBase,
   useMediaQuery,
+  Grid,
 } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from '@mui/material/styles';
@@ -38,6 +39,10 @@ import { useRouter } from 'next/router';
 import { useSnackbar } from 'notistack';
 import axios from 'axios';
 import { getError } from '../utils/error';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import HomeIcon from '@mui/icons-material/Home';
 import Form from './Form';
 
 export default function Layout({ title, description, children }) {
@@ -110,7 +115,6 @@ export default function Layout({ title, description, children }) {
     e.preventDefault();
     router.push(`/search?query=${query}`);
   };
-
 
   const darkModeChangeHandler = () => {
     dispatch({ type: darkMode ? 'DARK_MODE_OFF' : 'DARK_MODE_ON' });
@@ -361,10 +365,161 @@ export default function Layout({ title, description, children }) {
           {children}
         </Container>
 
-        <Box component='footer' sx={classes.footer}>
-          <Typography>
-            All rights reserved. Yuxian Xu ecommerce shopping store.
-          </Typography>
+        <Box
+          px={{ xs: 3, sm: 10 }}
+          py={{ xs: 5, sm: 10 }}
+          bgcolor="text.secondary"
+          color="white"
+        >
+          <Container maxWidth="lg">
+            <Grid container spacing={5}>
+              <Grid item xs={12} sm={4}>
+                <Box borderBottom={1} sx={{ fontWeight: 700 }}>
+                  Help
+                </Box>
+                <Box>
+                  <Link href="/" color="inherit">
+                    Contact
+                  </Link>
+                </Box>
+                <Box>
+                  <Link href="/" color="inherit">
+                    Support
+                  </Link>
+                </Box>
+                <Box>
+                  <Link href="/" color="inherit">
+                    Privacy
+                  </Link>
+                </Box>
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                <Box borderBottom={1} sx={{ fontWeight: 700 }}>
+                  User Account
+                </Box>
+                <Box>
+                  <Link href="/profile" color="inherit">
+                    Personal profile
+                  </Link>
+                </Box>
+                <Box>
+                  <Box>
+                    <Link href="/register?redirect=/" color="inherit">
+                      Register / Sign up
+                    </Link>
+                  </Box>
+                  <Link href="/login" color="inherit">
+                    Login
+                  </Link>
+                </Box>
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                <Box borderBottom={1} sx={{ fontWeight: 700 }}>
+                  Admin Dashboard
+                </Box>
+                <Box>
+                  <Link href="/admin/products" color="inherit">
+                    Products page
+                  </Link>
+                </Box>
+                <Box>
+                  <Link href="/admin/orders" color="inherit">
+                    Orders list
+                  </Link>
+                </Box>
+                <Box>
+                  <Link href="/admin/users" color="inherit">
+                    Users page
+                  </Link>
+                </Box>
+              </Grid>
+            </Grid>
+            <Box
+              textAlign="center"
+              sx={{
+                textDecoration: 'none',
+              }}
+              pt={{ xs: 5, sm: 10 }}
+              pb={{ xs: 5, sm: 0 }}
+            >
+              <Grid
+                item
+                container
+                spacing={2}
+                sx={{ justifyContent: 'center' }}
+              >
+                <Grid
+                  item
+                  component={'a'}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  href="/"
+                >
+                  <HomeIcon
+                    // className={classes.snsIcon}
+                    color={darkMode ? 'primary' : 'secondary'}
+                  />
+                </Grid>
+                <Grid
+                  item
+                  component={'a'}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  href="{facebook}"
+                >
+                  <FacebookIcon
+                    className={classes.snsIcon}
+                    color={darkMode ? 'primary' : 'secondary'}
+                  />
+                </Grid>
+                <Grid
+                  item
+                  component={'a'}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  href="{instagram}"
+                >
+                  <InstagramIcon
+                    className={classes.snsIcon}
+                    color={darkMode ? 'primary' : 'secondary'}
+                  />
+                </Grid>
+                <Grid
+                  item
+                  component={'a'}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  href="{github}"
+                >
+                  <GitHubIcon
+                    className={classes.snsIcon}
+                    color={darkMode ? 'primary' : 'secondary'}
+                  />
+                </Grid>
+                {/* add social media*/}
+              </Grid>
+              <Box
+                item
+                width="100%"
+                container
+                component={'a'}
+                target="_blank"
+                rel="noreferrer noopener"
+                href="https://yuxianxu.com"
+                justify="center"
+                sx={{
+                  textDecoration: 'none',
+                  color: '#fff',
+                  fontSize: '1em',
+                  '&:hover': {
+                    color: theme.palette.info.main,
+                  },
+                }}
+              >
+                &copy;Yuxian Xu {new Date().getFullYear()}
+              </Box>
+            </Box>
+          </Container>
         </Box>
       </ThemeProvider>
     </>

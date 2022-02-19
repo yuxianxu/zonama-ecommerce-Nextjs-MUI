@@ -130,6 +130,9 @@ const classes = {
       width: 250,
     },
   },
+  heroPrice: {
+    fontWeight:700,
+  },
 };
 
 export default classes;

@@ -11,6 +11,7 @@ import Product from '../models/Product';
 import db from '../utils/db';
 import { Store } from '../utils/Store';
 import classes from '../utils/classes';
+import { Box, flexbox } from '@mui/system';
 
 export default function Home(props) {
   // const router = useRouter();
@@ -57,8 +58,36 @@ export default function Home(props) {
                 sx={classes.responsive}
                 passHref
               >
-                <Typography sx={classes.heroText}>{product.name}</Typography>
-                <Typography sx={classes.heroPrice}>{'$'}{product.price}</Typography>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'end',
+                    height: '100%',
+                  }}
+                >
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'right',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      fontSize: '1rem',
+                      color: '#ffffff',
+                      backgroundColor: 'primary.main',
+                      opacity: 0.65,
+                      padding: '0.5rem',
+                    }}
+                  >
+                    <Typography sx={classes.heroPrice}>
+                      {'$'}
+                      {product.price}
+                    </Typography>
+                    <Typography sx={classes.heroText}>
+                      {product.name}
+                    </Typography>
+                  </Box>
+                </Box>
               </CardMedia>
             </Link>
           </NextLink>
