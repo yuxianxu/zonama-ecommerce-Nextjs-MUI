@@ -365,70 +365,68 @@ export default function Layout({ title, description, children }) {
           {children}
         </Container>
 
-        <Box
-          px={{ xs: 3, sm: 10 }}
-          py={{ xs: 5, sm: 10 }}
-          bgcolor="text.secondary"
-          color="white"
-        >
+        <Box px={{ xs: 3, sm: 10 }} py={{ xs: 5, sm: 10 }} bgcolor="#1e2d3d">
           <Container maxWidth="lg">
             <Grid container spacing={5}>
               <Grid item xs={12} sm={4}>
-                <Box borderBottom={1} sx={{ fontWeight: 700 }}>
-                  Help
-                </Box>
+                <Box sx={{ fontWeight: 700, color: '#cfcfcf' }}>Help</Box>
                 <Box>
-                  <Link href="/" color="inherit">
+                  <Link href="https://yuxianxu.com" color="#c4c4c4">
                     Contact
                   </Link>
                 </Box>
-                <Box>
-                  <Link href="/" color="inherit">
+                <Box sx={{ color: '#c4c4c4' }}>
+                  <Link href="https://yuxianxu.com" color="#c4c4c4">
                     Support
                   </Link>
                 </Box>
                 <Box>
-                  <Link href="/" color="inherit">
-                    Privacy
+                  <Link href="/" color="#c4c4c4">
+                    Privacy Notice
+                  </Link>
+                </Box>
+                <Box>
+                  <Link href="/" color="#c4c4c4">
+                    Conditions of Use
                   </Link>
                 </Box>
               </Grid>
               <Grid item xs={12} sm={4}>
-                <Box borderBottom={1} sx={{ fontWeight: 700 }}>
+                <Box sx={{ fontWeight: 700, color: '#c4c4c4' }}>
                   User Account
                 </Box>
                 <Box>
-                  <Link href="/profile" color="inherit">
+                  <Link href="/profile" color="#c4c4c4">
                     Personal profile
                   </Link>
                 </Box>
                 <Box>
                   <Box>
-                    <Link href="/register?redirect=/" color="inherit">
+                    <Link href="/register?redirect=/" color="#c4c4c4">
                       Register / Sign up
                     </Link>
                   </Box>
-                  <Link href="/login" color="inherit">
+                  <Link href="/login" color="#c4c4c4">
                     Login
                   </Link>
                 </Box>
               </Grid>
               <Grid item xs={12} sm={4}>
-                <Box borderBottom={1} sx={{ fontWeight: 700 }}>
+                <Box sx={{ fontWeight: 700, color: '#c4c4c4' }}>
                   Admin Dashboard
                 </Box>
                 <Box>
-                  <Link href="/admin/products" color="inherit">
+                  <Link href="/admin/products" color="#c4c4c4">
                     Products page
                   </Link>
                 </Box>
                 <Box>
-                  <Link href="/admin/orders" color="inherit">
+                  <Link href="/admin/orders" color="#c4c4c4">
                     Orders list
                   </Link>
                 </Box>
                 <Box>
-                  <Link href="/admin/users" color="inherit">
+                  <Link href="/admin/users" color="#c4c4c4">
                     Users page
                   </Link>
                 </Box>
@@ -442,6 +440,9 @@ export default function Layout({ title, description, children }) {
               pt={{ xs: 5, sm: 10 }}
               pb={{ xs: 5, sm: 0 }}
             >
+              <Divider
+                sx={{ backgroundColor: '#505559', marginBottom: '1rem' }}
+              />
               <Grid
                 item
                 container
@@ -465,10 +466,9 @@ export default function Layout({ title, description, children }) {
                   component={'a'}
                   target="_blank"
                   rel="noreferrer noopener"
-                  href="{facebook}"
+                  href="https://www.facebook.com/"
                 >
                   <FacebookIcon
-                    className={classes.snsIcon}
                     color={darkMode ? 'primary' : 'secondary'}
                   />
                 </Grid>
@@ -477,10 +477,9 @@ export default function Layout({ title, description, children }) {
                   component={'a'}
                   target="_blank"
                   rel="noreferrer noopener"
-                  href="{instagram}"
+                  href="https://www.instagram.com/"
                 >
                   <InstagramIcon
-                    className={classes.snsIcon}
                     color={darkMode ? 'primary' : 'secondary'}
                   />
                 </Grid>
@@ -489,7 +488,7 @@ export default function Layout({ title, description, children }) {
                   component={'a'}
                   target="_blank"
                   rel="noreferrer noopener"
-                  href="{github}"
+                  href="https://github.com/yuxianxu"
                 >
                   <GitHubIcon
                     className={classes.snsIcon}
@@ -502,21 +501,30 @@ export default function Layout({ title, description, children }) {
                 item
                 width="100%"
                 container
-                component={'a'}
-                target="_blank"
-                rel="noreferrer noopener"
                 href="https://yuxianxu.com"
                 justify="center"
                 sx={{
                   textDecoration: 'none',
                   color: '#fff',
-                  fontSize: '1em',
+                  fontSize: '1rem',
+                  paddingTop: '1rem',
                   '&:hover': {
                     color: theme.palette.info.main,
                   },
                 }}
               >
-                &copy;Yuxian Xu {new Date().getFullYear()}
+                <Box component={'span'} color="white">
+                  <Typography>
+                    &copy;{new Date().getFullYear()} zonama e-commerce 
+                  </Typography>
+                  <Typography
+                    component={'a'}
+                    href="https://yuxianxu.com"
+                    sx={{ textDecoration: 'none', fontSize: '0.9rem', color: '#c4c4c4' }}
+                  >
+                    Designed by Yuxian Xu  📩
+                  </Typography>
+                </Box>
               </Box>
             </Box>
           </Container>
