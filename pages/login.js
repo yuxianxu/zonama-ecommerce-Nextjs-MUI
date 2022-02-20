@@ -74,7 +74,7 @@ export default function Login() {
                   variant="outlined"
                   fullWidth
                   id="email"
-                  label="Email"
+                  label="For demo use: admin@example.com "
                   inputProps={{ type: 'email' }}
                   error={Boolean(errors.email)}
                   helperText={
@@ -103,7 +103,7 @@ export default function Login() {
                   variant="outlined"
                   fullWidth
                   id="password"
-                  label="Password"
+                  label="For demo use: test2233"
                   inputProps={{ type: 'password' }}
                   error={Boolean(errors.password)}
                   helperText={

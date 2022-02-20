@@ -367,6 +367,31 @@ export default function Layout({ title, description, children }) {
           </Toolbar>
         </AppBar>
         <Toolbar />
+        <Box>
+          <Box>
+            <Form
+              onSubmit={submitHandler}
+              sx={isDesktop ? classes.hidden : classes.visibleSearch}
+            >
+              <Box fullWidth sx={classes.searchFormMobile}>
+                <InputBase
+                  name="query"
+                  sx={classes.searchInput}
+                  placeholder="Search products"
+                  onChange={queryChangeHandler}
+                />
+                <IconButton
+                  type="submit"
+                  sx={classes.searchButtonMobile}
+                  aria-label="search"
+                >
+                  <SearchIcon />
+                </IconButton>
+              </Box>
+            </Form>
+          </Box>
+        </Box>
+
         <Container component="main" sx={classes.main}>
           {children}
         </Container>
@@ -543,21 +568,22 @@ export default function Layout({ title, description, children }) {
           <BottomNavigation showLabels>
             <BottomNavigationAction label="Home" href="/" icon={<HomeIcon />} />
             <BottomNavigationAction
-              label={cart.cartItems.length > 0 ? (
+              label={
+                cart.cartItems.length > 0 ? (
                   <Badge color="secondary" badgeContent={cart.cartItems.length}>
                     {'Cart'}
                     {''}
                   </Badge>
                 ) : (
                   'Cart'
-                )}
+                )
+              }
               href="/cart"
               icon={<ShoppingCartCheckoutIcon />}
-            >              
-            </BottomNavigationAction>
+            ></BottomNavigationAction>
             <BottomNavigationAction
               label="My Account"
-              href='/profile'
+              href="/profile"
               icon={<AccountBoxIcon />}
             />
           </BottomNavigation>

@@ -80,8 +80,23 @@ const classes = {
     backgroundColor: 'white',
     borderRadius: 3,
   },
+  visibleSearch: {
+    display: 'flex',
+    justifyContent: 'center',
+    width: '100vw',
+    zIndex: '2'
+  },
+  searchFormMobile: {    
+    mt: '1rem',
+    border: '1px solid grey',
+    backgroundColor: 'white',
+    borderRadius: 3,
+    display: 'flex',
+    
+  },
   searchInput: {
-    paddingLeft: 0.2,
+    paddingLeft: 1,
+    width: '80%',
     color: '#000000',
     '& ::placeholder': {
       color: '#606060',
@@ -93,7 +108,15 @@ const classes = {
   },
   searchButton: {
     backgroundColor: '#f8c040',
-    padding: 1,
+    padding: '4px 8px',
+    borderRadius: '0 12px 12px 0',
+    '& span': {
+      color: '#000000',
+    },
+  },
+  searchButtonMobile: {
+    backgroundColor: '#f8c040',
+    padding: '1px 10px',
     borderRadius: '0 12px 12px 0',
     '& span': {
       color: '#000000',
