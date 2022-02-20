@@ -11,7 +11,7 @@ import Product from '../models/Product';
 import db from '../utils/db';
 import { Store } from '../utils/Store';
 import classes from '../utils/classes';
-import { Box, flexbox } from '@mui/system';
+import { Box } from '@mui/system';
 
 export default function Home(props) {
   // const router = useRouter();
