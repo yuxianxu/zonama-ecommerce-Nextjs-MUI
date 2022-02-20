@@ -30,6 +30,9 @@ import {
   InputBase,
   useMediaQuery,
   Grid,
+  BottomNavigation,
+  BottomNavigationAction,
+  Paper,
 } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from '@mui/material/styles';
@@ -43,6 +46,8 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import HomeIcon from '@mui/icons-material/Home';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import Form from './Form';
 
 export default function Layout({ title, description, children }) {
@@ -288,24 +293,25 @@ export default function Layout({ title, description, children }) {
                 onChange={darkModeChangeHandler}
                 sx={{ m: 1 }}
               />
-
-              <NextLink href="/cart" passHref>
-                <Link style={{ textDecoration: 'none' }}>
-                  <Typography component="span">
-                    {cart.cartItems.length > 0 ? (
-                      <Badge
-                        color="secondary"
-                        badgeContent={cart.cartItems.length}
-                      >
-                        {'Cart'}
-                        {'🛒'}
-                      </Badge>
-                    ) : (
-                      '🛒  Cart'
-                    )}
-                  </Typography>
-                </Link>
-              </NextLink>
+              <Box sx={isDesktop ? classes.visible : classes.hidden}>
+                <NextLink href="/cart" passHref>
+                  <Link style={{ textDecoration: 'none' }}>
+                    <Typography component="span">
+                      {cart.cartItems.length > 0 ? (
+                        <Badge
+                          color="secondary"
+                          badgeContent={cart.cartItems.length}
+                        >
+                          {'Cart'}
+                          {'🛒'}
+                        </Badge>
+                      ) : (
+                        '🛒  Cart'
+                      )}
+                    </Typography>
+                  </Link>
+                </NextLink>
+              </Box>
               {userInfo ? (
                 <>
                   <Button
@@ -468,9 +474,7 @@ export default function Layout({ title, description, children }) {
                   rel="noreferrer noopener"
                   href="https://www.facebook.com/"
                 >
-                  <FacebookIcon
-                    color={darkMode ? 'primary' : 'secondary'}
-                  />
+                  <FacebookIcon color={darkMode ? 'primary' : 'secondary'} />
                 </Grid>
                 <Grid
                   item
@@ -479,9 +483,7 @@ export default function Layout({ title, description, children }) {
                   rel="noreferrer noopener"
                   href="https://www.instagram.com/"
                 >
-                  <InstagramIcon
-                    color={darkMode ? 'primary' : 'secondary'}
-                  />
+                  <InstagramIcon color={darkMode ? 'primary' : 'secondary'} />
                 </Grid>
                 <Grid
                   item
@@ -515,20 +517,51 @@ export default function Layout({ title, description, children }) {
               >
                 <Box component={'span'} color="white">
                   <Typography>
-                    &copy;{new Date().getFullYear()} zonama e-commerce 
+                    &copy;{new Date().getFullYear()} zonama e-commerce
                   </Typography>
                   <Typography
                     component={'a'}
                     href="https://yuxianxu.com"
-                    sx={{ textDecoration: 'none', fontSize: '0.9rem', color: '#c4c4c4' }}
+                    sx={{
+                      textDecoration: 'none',
+                      fontSize: '0.9rem',
+                      color: '#c4c4c4',
+                    }}
                   >
-                    Designed by Yuxian Xu  📩
+                    Designed by Yuxian Xu 📩
                   </Typography>
                 </Box>
               </Box>
             </Box>
           </Container>
         </Box>
+
+        <Paper
+          sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }}
+          elevation={3}
+        >
+          <BottomNavigation showLabels>
+            <BottomNavigationAction label="Home" href="/" icon={<HomeIcon />} />
+            <BottomNavigationAction
+              label={cart.cartItems.length > 0 ? (
+                  <Badge color="secondary" badgeContent={cart.cartItems.length}>
+                    {'Cart'}
+                    {''}
+                  </Badge>
+                ) : (
+                  'Cart'
+                )}
+              href="/cart"
+              icon={<ShoppingCartCheckoutIcon />}
+            >              
+            </BottomNavigationAction>
+            <BottomNavigationAction
+              label="My Account"
+              href='/profile'
+              icon={<AccountBoxIcon />}
+            />
+          </BottomNavigation>
+        </Paper>
       </ThemeProvider>
     </>
   );
