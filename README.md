@@ -90,7 +90,7 @@ Zonama is a massive E-commerce app like amazon. It is a full stack project with 
 
 ### Administrator
 
-![Administrator dashboard](https://res.cloudinary.com/zonama/image/upload/v1645408228/Screen_Shot_2022-02-20_at_5.49.30_PM_qbp7mx.png)
+![Administrator - dashboard](https://res.cloudinary.com/zonama/image/upload/v1645409071/Screen_Shot_2022-02-20_at_6.04.19_PM_jlrcnq.png)
 
 ![Administrator - products](https://res.cloudinary.com/zonama/image/upload/v1645407787/Screen_Shot_2022-02-20_at_5.42.54_PM_wkfmel.png)
 
