@@ -88,7 +88,7 @@ const classes = {
   },
   searchFormMobile: {    
     mt: '1rem',
-    border: '1px solid grey',
+    border: '1px solid #dbdbdb',
     backgroundColor: 'white',
     borderRadius: 3,
     display: 'flex',
