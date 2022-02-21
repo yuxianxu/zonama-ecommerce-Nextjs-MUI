@@ -18,6 +18,9 @@ Zonama is a massive E-commerce app like amazon. It is a full stack project with 
 - JWT Auth: authorization
 - Cloudinary: media cloud storage  
 
+## Homepage 
+![Homepage](https://res.cloudinary.com/zonama/image/upload/v1645407077/Screen_Shot_2022-02-20_at_5.15.10_PM_dzdevj.png)
+
 ## Feature
 
 ### Full function
@@ -50,17 +53,50 @@ Zonama is a massive E-commerce app like amazon. It is a full stack project with 
 - payment methods
 - payment redirect page
 
-## Screenshots
+## More Screenshots
+
+### homepage
+
 ![Homepage](https://res.cloudinary.com/zonama/image/upload/v1645407077/Screen_Shot_2022-02-20_at_5.15.10_PM_dzdevj.png)
+
+### Mobile view
+
 ![Mobile view](https://res.cloudinary.com/zonama/image/upload/v1645407475/Screen_Shot_2022-02-20_at_5.37.27_PM_swp02i.png)
+
+### Search products by category
+
 ![Search products by category](https://res.cloudinary.com/zonama/image/upload/v1645407077/Screen_Shot_2022-02-20_at_5.16.18_PM_uq9eci.png)
+
+### Footer
+
 ![Footer](https://res.cloudinary.com/zonama/image/upload/v1645407077/Screen_Shot_2022-02-20_at_5.17.19_PM_dalhwt.png)
+
+### Shopping cart
+
 ![Shopping cart](https://res.cloudinary.com/zonama/image/upload/v1645407077/Screen_Shot_2022-02-20_at_5.16.38_PM_qsyz7s.png)
+
+### Checkout
+
 ![Checkout](https://res.cloudinary.com/zonama/image/upload/v1645407076/Screen_Shot_2022-02-20_at_5.10.34_PM_oijhwb.png)
+
+
 ![Checkout](https://res.cloudinary.com/zonama/image/upload/v1645407076/Screen_Shot_2022-02-20_at_5.11.23_PM_whotjv.png)
+
+
+### Payment
+
 ![Payment method](https://res.cloudinary.com/zonama/image/upload/v1645407076/Screen_Shot_2022-02-20_at_5.10.52_PM_vjkvif.png)
 ![Payment gateway](https://res.cloudinary.com/zonama/image/upload/v1645407077/Screen_Shot_2022-02-20_at_5.11.48_PM_g0chij.png)
-![Administrator dashboard](https://res.cloudinary.com/zonama/image/upload/v1645407787/Screen_Shot_2022-02-20_at_5.42.54_PM_wkfmel.png)
+
+### Administrator
+
+![Administrator dashboard](https://res.cloudinary.com/zonama/image/upload/v1645408228/Screen_Shot_2022-02-20_at_5.49.30_PM_qbp7mx.png)
+
+![Administrator - products](https://res.cloudinary.com/zonama/image/upload/v1645407787/Screen_Shot_2022-02-20_at_5.42.54_PM_wkfmel.png)
+
+![Administrator - users](https://res.cloudinary.com/zonama/image/upload/v1645408306/Screen_Shot_2022-02-20_at_5.51.35_PM_yfud9l.png)
+
+### Dark mode
 
 ![Dark mode](https://res.cloudinary.com/zonama/image/upload/v1645407078/Screen_Shot_2022-02-20_at_5.18.02_PM_nfyuzr.png)
 
