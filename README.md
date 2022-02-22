@@ -1,6 +1,6 @@
 # zonama
 
-Zonama is a massive E-commerce app like amazon. It is a full stack project with NextJS and MongoDB.
+Zonama is a full-featured E-commerce app like amazon. It is also a full stack project with NextJS and MongoDB.
 
 ## Live Demo
 
