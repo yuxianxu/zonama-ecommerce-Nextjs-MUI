@@ -52,6 +52,7 @@ Zonama is a full-featured E-commerce app like amazon. It is also a full stack pr
 
 - payment methods
 - payment redirect page
+- paypal and credit card supported
 
 ## More Screenshots
 
