@@ -61,7 +61,7 @@ Zonama is a full-featured E-commerce app like amazon. It is also a full stack pr
 
 ![Homepage](https://res.cloudinary.com/zonama/image/upload/v1645407077/Screen_Shot_2022-02-20_at_5.15.10_PM_dzdevj.png)
 
-### Mobile view
+### Mobile view - responsive design
 
 ![Mobile view](https://res.cloudinary.com/zonama/image/upload/v1645407475/Screen_Shot_2022-02-20_at_5.37.27_PM_swp02i.png)
 
