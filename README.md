@@ -16,7 +16,7 @@ Zonama is a full-featured E-commerce app like amazon. It is also a full stack pr
 - PayPal developer api: to make online payment
 - Deployment: Deploy web applications on servers like Vercel
 - JWT Auth: authorization
-- Cloudinary: media cloud storage 
+- Cloudinary: images cloud storage 
 - Google login: Will update this feature later
 
 ## Homepage 
