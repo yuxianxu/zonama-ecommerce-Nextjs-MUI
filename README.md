@@ -26,7 +26,7 @@ Zonama is a full-featured E-commerce app like amazon. It is also a full stack pr
 
 ### Full function
 
-- users: browsing, searching, placing order, and checking delivery
+- users: Sign up, browsing, searching, placing order, and checking delivery
 - administrators: scalable backend dashboard including creating new product page and managing orders
 
 ### Products
